@@ -23,7 +23,7 @@ def play(rounds=5000, max_life=3,discount_factor=0.1, learning_rate=0.1,ratio_ex
         reward, done=None, None
 
         itera=0
-        while(done!=True and (itera<=3000 and reward<=1000)):
+        while(done!=True and (itera<=3000 and game.total_reward<=1000)):
             old_state=np.array(state)
             next_action=learner.get_next_step(state,game)
             state,reward,done=game.step(next_action,animate=animate)
@@ -36,10 +36,10 @@ def play(rounds=5000, max_life=3,discount_factor=0.1, learning_rate=0.1,ratio_ex
             max_points=game.total_reward
             first_max_reached=played_games
         if played_games%500==0 and played_games>1 and not animate:
-            print('na;an;')
+            print ( 'Partidas: '+ str(played_games)+' Avg points: ' + str(total_rw/played_games)+' Avg steps: '+ str(np.array(steps).mean())+ ' Max score: '+ str(max_points))
     if played_games>1:
-        print("an;na;")
+        print( 'Partidas: '+ str(played_games)+' Avg points: ' + str(total_rw/played_games)+ ' Max score: '+ str(max_points)+ 'En partida: '+ str(first_max_reached))
     return learner,game
         
-        
+learner, game = play(rounds=6000, discount_factor = 0.2, learning_rate = 0.1, ratio_explotacion=0.85)
 
