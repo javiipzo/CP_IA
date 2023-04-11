@@ -66,6 +66,7 @@ class Environment:
     def avanza_frame(self):
         self.x += self.dx
         self.y += self.dy
+        ret=False
         if self.x <= 3 or self.x > self.width_px:
             self.dx = -self.dx
         if self.x <= 3:
